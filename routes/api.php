@@ -17,11 +17,11 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group(['middleware' => 'api_key'], function(){
+// Route::group(['middleware' => 'api_key'], function(){
     Route::resources([
         '/users' => 'UserController'
     ]);
-});
+// });
 
 Route::post('/register', 'Auth\RegisterController@create')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');

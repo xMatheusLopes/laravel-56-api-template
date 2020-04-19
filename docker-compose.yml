@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+    db:
+        container_name: postgres
+        image: postgres
+        restart: always
+        environment:
+          POSTGRES_PASSWORD: root
+          POSTGRES_USER: admin
+          POSTGRES_DB: laravel
+        ports:
+            - 5432:5432
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data
+    app:
+        container_name: laravelcontainer
+        build: .
+        volumes:
+            - .:/usr/src/backend
+        ports:
+            - 8000:8000
+        command: >
+            bash -c "npm install && composer install && php artisan serve --host=0.0.0.0 --port=8080"
